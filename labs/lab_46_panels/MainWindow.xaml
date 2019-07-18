@@ -1,0 +1,95 @@
+﻿<Window x:Class="lab_46_panels.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab_46_panels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="auto" Width="auto" Background="Aquamarine" FontSize="12" >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Label x:Name="stackPanel" Content="Stack" Grid.Column="0" FontWeight="Bold" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="LightSeaGreen"/>
+        <Label x:Name="TabPanel" Content="Tab" Grid.Column="1" FontWeight="Bold" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="LightSeaGreen"/>
+        <Label x:Name="DockPanel" Content="Dock" Grid.Column="2" FontWeight="Bold" FontSize="20" HorizontalContentAlignment="Center" Background="LightSeaGreen"/>
+        <Label x:Name="WrapPanel" Content="Wrap" Grid.Column="3" FontWeight="Bold" FontSize="20" HorizontalContentAlignment="Center" Background="LightSeaGreen"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0">
+            <StackPanel Grid.Row="1" Grid.Column="0" Background="#abc" Orientation="Vertical">
+                <Button Background="OliveDrab" Content="Button"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <RichTextBox />
+                <TextBox Text="enter plain text"/>
+                <Label Content="Label"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <RichTextBox />
+                <TextBox Text="enter plain text"/>
+                <Label Content="Label"/>
+                <TextBlock Text="TextBlock = Plain text"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <RichTextBox />
+                <TextBox Text="enter plain text"/>
+                <Label Content="Label"/>
+                <TextBlock Text="TextBlock = Plain text"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <Button Background="OliveDrab" Content="Button"/>
+                <RichTextBox />
+                <TextBox Text="enter plain text"/>
+                <Label Content="Label"/>
+                <TextBlock Text="TextBlock = Plain text"/>
+            </StackPanel>
+        </ScrollViewer>
+        <DockPanel Grid.Row="1" Grid.Column="2" Background="#dcd" LastChildFill="True">
+            <Button Background="MintCream" DockPanel.Dock="Top" Content="Top"/>
+            <Button Background="MintCream" DockPanel.Dock="Bottom" Content="Bottom"/>
+            <Button Background="MintCream" DockPanel.Dock="Left" Content="Left"/>
+            <Button Background="MintCream" DockPanel.Dock="Right" Content="Right"/>
+            <Button Background="MintCream" Content="Center"/>
+        </DockPanel>
+        <WrapPanel Grid.Row="1" Grid.Column="3" Background="#f7f6cb">
+            <Button Background="#b6d709" Width="20" Height="20" Margin="3"/>
+            <Button Background="#b6d709" Width="20" Height="20" Margin="3"/>
+            <Button Background="#b6d709" Width="20" Height="20" Margin="3"/>
+            <Button Background="#b6d709" Width="20" Height="20" Margin="3"/>
+            <Button Background="#b6d709" Width="20" Height="20" Margin="3"/>
+            <Button Background="#b6d709" Width="20" Height="20" Margin="3"/>
+            <Button Background="#b6d709" Width="20" Height="20" Margin="3"/>
+            <Button Background="#b6d709" Width="20" Height="20" Margin="3"/>
+            <Button Background="#b6d709" Width="20" Height="20" Margin="3"/>
+            <Button Background="#b6d709" Width="20" Height="20" Margin="3"/>
+            <Button Background="#b6d709" Width="20" Height="20" Margin="3"/>
+            <Button Background="#b6d709" Width="20" Height="20" Margin="3"/>
+            <Button Background="#b6d709" Width="20" Height="20" Margin="3"/>
+            <Button Background="#b6d709" Width="20" Height="20" Margin="3"/>
+        </WrapPanel>
+        <TabControl Grid.Row="1" Grid.Column="1" Background="#df20d9">
+            <TabItem x:Name="if" Width="50" Header="One">
+                <Label Content="1"/>
+            </TabItem>
+            <TabItem x:Name="fr" Width="50" Header="Two">
+                <Label Content="2"/>
+            </TabItem>
+            <TabItem x:Name="ed" Width="50" Header="Three">
+                <Label Content="3"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
