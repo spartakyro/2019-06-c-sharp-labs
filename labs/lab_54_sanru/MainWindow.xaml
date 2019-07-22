@@ -4,35 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:local="clr-namespace:lab_54_sanru"
         mc:Ignorable="d"
-        Title="Area51" Height="450" Width="800">
+        Title="Tic-Tac Scramble" Height="450" Width="800" MediaElement.MediaOpened="MetroWindow_MediaOpened">
     <Grid>
-        <Controls:FlipView x:Name="flippy"
-            Foreground="{DynamicResource WhiteBrush}"
-                           Height="200"
-                           SelectionChanged="Flippy_SelectionChanged">
-            <Controls:FlipView.Items>
-                <Grid Background="#2E8DEF">
-                    <iconPacks:PackIconModern Width="60" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" Kind="Cupcake" Foreground="Black"/>
-                    
-                </Grid>
-                <Grid Background="#2E8DEF">
-                    <iconPacks:PackIconModern Width="60" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center" Kind="BeerGuinness" Foreground="Black"/>
-
-                </Grid>
-            </Controls:FlipView.Items>
-        </Controls:FlipView>
-        <Controls:MetroTabControl Margin="0,214,-0.4,0" Background="#FF22201A" Foreground="#FFBD0F0F">
-            <Controls:MetroTabItem Header="Customers">
-
-            </Controls:MetroTabItem>
-            <Controls:MetroTabItem Header="Products">
-
-            </Controls:MetroTabItem>
-        </Controls:MetroTabControl>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="465,154,0,0" VerticalAlignment="Top" Width="201" BorderBrush="#FF593434" Background="#FF977B13" Height="77" Foreground="#FFC53838" Click="Button_Click">
+        
+        <MediaElement x:Name="Backgroundvid" Grid.ColumnSpan="3" Grid.RowSpan="3" Source="jumble.mp4" Stretch="Fill" LoadedBehavior="Manual" />
+        <Label x:Name="Player1" Content="Player 1:" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Height="31" Width="177" Background="#FF2A6926"/>
+        <Label x:Name="Player2" Content="Player 2:" HorizontalAlignment="Left" Margin="591,39,0,0" VerticalAlignment="Top" Height="31" Width="177" Background="#FF2A6926"/>
+        <TextBox x:Name="NameTextBox" Background="ForestGreen" HorizontalAlignment="Left" Height="51" Margin="249,265,0,0" TextWrapping="Wrap" Controls:TextBoxHelper.Watermark="Enter Your Name" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="261" TextChanged="TextBox_TextChanged"/>
+        <Button Content="Enter" HorizontalAlignment="Left" Margin="298,346,0,0" VerticalAlignment="Top" Width="155" BorderBrush="#FFA29E9E" Background="ForestGreen" Height="48" Foreground="#FFE5A709" Click="Button_Click" FontSize="20">
             <Button.OpacityMask>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF2D11B9" Offset="0"/>

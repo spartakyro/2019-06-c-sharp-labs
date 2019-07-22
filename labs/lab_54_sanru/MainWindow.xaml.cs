@@ -20,9 +20,19 @@ namespace lab_54_sanru
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        public Color textbcolour = new Color();
+        
         public MainWindow()
         {
             InitializeComponent();
+            initialise();
+            Backgroundvid.Play();
+         
+        }
+
+        void initialise()
+        {
+            
         }
 
         private void Flippy_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -30,10 +40,25 @@ namespace lab_54_sanru
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            Window1 p1 = new Window1();
-            p1.ShowDialog();
+            if (string.IsNullOrWhiteSpace(NameTextBox.Text))
+            {   
+                
+                MessageBox.Show("Please enter your name");
+
+
+            }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void MetroWindow_MediaOpened(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

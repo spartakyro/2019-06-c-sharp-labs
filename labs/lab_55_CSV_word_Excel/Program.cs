@@ -7,6 +7,8 @@ using System.IO;
 using System.Diagnostics;
 using Xceed.Words.NET;
 using Microsoft.Office.Interop.Excel;
+using System.Windows.Forms;
+
 namespace lab_55_CSV_word_Excel
 {
     class Program
@@ -140,6 +142,8 @@ namespace lab_55_CSV_word_Excel
                     oSheet.Cells[10+seconds, 1] = $"{seconds}";
                     oSheet.Cells[10+seconds, 2] = $"{rabbitPopulation}";
 
+                    
+
                     rabbitPopulation *= 2;
                     seconds++;
                 }
@@ -158,7 +162,7 @@ namespace lab_55_CSV_word_Excel
                     Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 
                 oWB.Close();
-                System.Threading.Thread.Sleep(1000);
+                
 
             }
             catch (Exception e)

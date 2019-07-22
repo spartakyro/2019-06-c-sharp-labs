@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace snaplab_03_wpf_crud
+namespace gameweek
 {
     public class BoolToVisibilityConverter : IMultiValueConverter
     {

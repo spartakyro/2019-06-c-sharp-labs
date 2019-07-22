@@ -46,7 +46,7 @@ namespace snaplab_03_wpf_crud
 
             var ProID = productListView.DisplayMemberPath = "ProductID";
             productListView.DisplayMemberPath = "ProductName";
-            ProductName.Text = ;
+            //ProductName.Text = ;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
