@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="tic-tac-toe.xaml.cs">
+      <DependentUpon>tic-tac-toe.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wordjumble.xaml.cs">
       <DependentUpon>Wordjumble.xaml</DependentUpon>
     </Compile>
@@ -70,6 +73,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="tic-tac-toe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Wordjumble.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

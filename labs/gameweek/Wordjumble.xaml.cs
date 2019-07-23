@@ -25,7 +25,7 @@ namespace gameweek
 
         public string Answers;
 
-       
+        public bool jumbleHide = false;
 
         public Wordjumble()
         {
@@ -39,8 +39,7 @@ namespace gameweek
             string selectedplayer1 = (App.Current as App).player1;
             playerturn.Content = selectedplayer1;
 
-            
-
+           
 
 
         }
@@ -99,12 +98,22 @@ namespace gameweek
             
         }
 
+        void Nextwindow()
+        {
+            
+        }
+
         private async void Checkbtn_Click(object sender, RoutedEventArgs e)
         {
             if(Answertxt.Text == Answers)
             {
                 Correctping.Play();
                 Answertxt.Background = Brushes.ForestGreen;
+                
+                jumbleHide = true;
+
+                navwindow.Navigate(new tic_tac_toe());
+
             }
 
             if(Answertxt.Text != Answers)
@@ -119,7 +128,30 @@ namespace gameweek
 
             }
 
-            
+           // NavigationService.Navigate(new Uri("tic-tac-toe.xaml", UriKind.Relative));
+
+
+            if (jumbleHide == true)
+            {
+                Answertxt.Visibility = Visibility.Hidden;
+                playerturn.Visibility = Visibility.Hidden;
+                Wordjumbler.Visibility = Visibility.Hidden;
+                checkbtn.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                Answertxt.Visibility = Visibility.Visible;
+                playerturn.Visibility = Visibility.Visible;
+                Wordjumbler.Visibility = Visibility.Visible;
+                checkbtn.Visibility = Visibility.Visible;
+            }
+
+
+
+
+
+
+
         }
 
         private void Incorrectping_MediaEnded(object sender, RoutedEventArgs e)
@@ -131,6 +163,11 @@ namespace gameweek
         private void Correctping_MediaEnded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void BackgroundVid_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            backgroundVid.Position = new TimeSpan(0);
         }
     }
     class Shuffle
@@ -208,7 +245,7 @@ namespace gameweek
         public string Answers { get; set; }
         public int Points { get; set; }
 
-        public QuestionsBank(string questions, string answers, int points)
+        public QuestionsBank(string questions, string answers,  int points)
         {
             this.Questions = questions;
             this.Answers = answers;

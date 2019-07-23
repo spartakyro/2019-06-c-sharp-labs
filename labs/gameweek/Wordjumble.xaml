@@ -9,11 +9,12 @@
       Title="Wordjumble" AllowDrop="True">
 
     <Grid Width="800" Height="450">
-        <MediaElement x:Name="backgroundVid" Source="jumble.mp4" LoadedBehavior="Manual" Stretch="Fill" Grid.RowSpan="2" Grid.ColumnSpan="3" Cursor="" IsEnabled="False"/>
+        <MediaElement x:Name="backgroundVid" Source="jumble.mp4" LoadedBehavior="Manual" Stretch="Fill" Grid.RowSpan="2" Grid.ColumnSpan="3" Cursor="" IsEnabled="False" MediaEnded="BackgroundVid_MediaEnded"/>
         <TextBox x:Name="Answertxt" Height="30" FontWeight="Bold"  Width="200" Margin="0,347,0,72.6" Background="Aqua" TextChanged="Answertxt_TextChanged" Grid.Column="2" />
         <Label x:Name="playerturn" Content="kieron" FontSize="30" FontWeight="DemiBold" HorizontalContentAlignment="Center" Foreground="Aqua" HorizontalAlignment="Left" Height="49" Margin="300,10,0,0" VerticalAlignment="Top" Width="193" DataContextChanged="Label_DataContextChanged"/>
+        <Frame x:Name="navwindow" NavigationUIVisibility="Hidden"/>
         <Label x:Name="Wordjumbler" Content="hello" FontSize="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Aqua" Foreground="Black" FontWeight="DemiBold" Margin="270,141,275,220"/>
-        <Button x:Name="checkbtn" Height="50" Width="100" Margin="641,390,59,10"  Content="Check" FontSize="30" FontWeight="DemiBold" Click="Checkbtn_Click" >
+        <Button x:Name="checkbtn"  Height="50" Width="100" Margin="641,390,59,10"  Content="Check" FontSize="30" FontWeight="DemiBold" Click="Checkbtn_Click" >
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="Aqua"/>
