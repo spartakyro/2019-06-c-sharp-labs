@@ -6,14 +6,36 @@
       xmlns:local="clr-namespace:gameweek"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Wordjumble">
+      Title="Wordjumble" AllowDrop="True">
 
     <Grid Width="800" Height="450">
-        <MediaElement x:Name="backgroundVid" Source="jumble.mp4" LoadedBehavior="Manual" Stretch="Fill" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
-        <TextBox x:Name="Answertxt" Height="30" Width="200" Margin="0,347,0,72.6" Background="Aqua" TextChanged="Answertxt_TextChanged" Grid.Column="2" />
-        <Label x:Name="playerturn" Content="" HorizontalAlignment="Left" Height="49" Margin="10,226,0,0" VerticalAlignment="Top" Width="193" FontSize="30" Background="Aqua" DataContextChanged="Label_DataContextChanged"/>
-        <Label x:Name="Wordjumbler" Content="hello" FontSize="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Aqua" Foreground="Black" FontWeight="DemiBold" Margin="286,48,259,312.6"/>
-       
+        <MediaElement x:Name="backgroundVid" Source="jumble.mp4" LoadedBehavior="Manual" Stretch="Fill" Grid.RowSpan="2" Grid.ColumnSpan="3" Cursor="" IsEnabled="False"/>
+        <TextBox x:Name="Answertxt" Height="30" FontWeight="Bold"  Width="200" Margin="0,347,0,72.6" Background="Aqua" TextChanged="Answertxt_TextChanged" Grid.Column="2" />
+        <Label x:Name="playerturn" Content="kieron" FontSize="30" FontWeight="DemiBold" HorizontalContentAlignment="Center" Foreground="Aqua" HorizontalAlignment="Left" Height="49" Margin="300,10,0,0" VerticalAlignment="Top" Width="193" DataContextChanged="Label_DataContextChanged"/>
+        <Label x:Name="Wordjumbler" Content="hello" FontSize="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Aqua" Foreground="Black" FontWeight="DemiBold" Margin="270,141,275,220"/>
+        <Button x:Name="checkbtn" Height="50" Width="100" Margin="641,390,59,10"  Content="Check" FontSize="30" FontWeight="DemiBold" Click="Checkbtn_Click" >
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="Aqua"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="DarkGoldenrod"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <MediaElement x:Name="Correctping" Source="Correct.mp3" LoadedBehavior="Manual" MediaEnded="Correctping_MediaEnded" Visibility="Hidden" Height="50" Width="50" Margin="835,350,-85,50"/>
+        <MediaElement x:Name="incorrectping" Source="incorrect.mp4" MediaEnded="Incorrectping_MediaEnded" Visibility="Hidden" LoadedBehavior="Manual" Height="50" Width="50" Margin="835,400,-85,0"/>
     </Grid>
 
 </Page>

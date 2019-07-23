@@ -25,6 +25,8 @@ namespace gameweek
 
         public string Answers;
 
+       
+
         public Wordjumble()
         {
             InitializeComponent();
@@ -36,6 +38,8 @@ namespace gameweek
 
             string selectedplayer1 = (App.Current as App).player1;
             playerturn.Content = selectedplayer1;
+
+            
 
 
 
@@ -95,7 +99,39 @@ namespace gameweek
             
         }
 
+        private async void Checkbtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(Answertxt.Text == Answers)
+            {
+                Correctping.Play();
+                Answertxt.Background = Brushes.ForestGreen;
+            }
 
+            if(Answertxt.Text != Answers)
+            {
+                incorrectping.Play();
+
+                Answertxt.Background = Brushes.Red;
+                await Task.Delay(500);
+                Answertxt.Background = Brushes.Aqua;
+
+
+
+            }
+
+            
+        }
+
+        private void Incorrectping_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            incorrectping.Position = new TimeSpan(0);
+            incorrectping.Stop();
+        }
+
+        private void Correctping_MediaEnded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
     class Shuffle
     {
