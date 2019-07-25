@@ -20,11 +20,19 @@
         <MediaElement x:Name="backgroundVid" Grid.ColumnSpan="3" Grid.RowSpan="3" Source="jumble.mp4" LoadedBehavior="Manual" Stretch="Fill"/>
         <Button x:Name="Startbtn" Opacity="0.7" Content="Enter" FontSize="30" Foreground="Black" Click="Button_Click" Grid.Column="1" Grid.Row="2" Background="Aqua" Margin="36.467,73,35.067,10"/>
         <TextBox x:Name="Namebox" Opacity="0.7" Grid.Row="2" Grid.Column="1" FontWeight="Bold" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Aqua" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="36.467,10,34.067,90" Width="194" Height="40"/>
-        <TextBox x:Name="Nameboxp2" Opacity="0.7" Grid.Row="2" Grid.Column="1" FontWeight="Bold" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Aqua" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="36.467,10,34.067,90" Width="194" Height="40"/>
+        <TextBox x:Name="Nameboxp2"  Opacity="0.7" Grid.Row="2" Grid.Column="1" FontWeight="Bold" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Aqua" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="36.467,10,34.067,90" Width="194" Height="40" />
         <Label x:Name="Player1label" Content="Player 1" FontSize="30" FontWeight="Bold" Foreground="Aqua" Margin="50,25,57.8,60"/>
         <Label x:Name="Player2label" Content="Player 2" FontSize="30" FontWeight="Bold" Grid.Column="2" Foreground="Aqua" Margin="43.4,25,64.4,60"/>
         <Label x:Name="Player1name" Content="" FontSize="30" FontWeight="Bold" Foreground="Aqua" Margin="32,54,76.8,38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="156"/>
         <Label x:Name="Player2name" Content="" FontSize="30" FontWeight="Bold" Grid.Column="2" Foreground="Aqua" Margin="44.4,54,64.4,31"/>
+        <DockPanel Grid.Column="1" Grid.Row="1" Background="Green">
+            <DataGrid x:Name="HighScore" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" Loaded="HighScore_Loaded" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Score" Binding="{Binding Score}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
 
 
 

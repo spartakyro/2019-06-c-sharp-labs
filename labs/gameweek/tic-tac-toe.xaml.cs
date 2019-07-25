@@ -21,35 +21,97 @@ namespace gameweek
     /// </summary>
     public partial class tic_tac_toe : Page
     {
+        //Wordjumble newConstructor = new Wordjumble();
+        string selectedplayer1 = (App.Current as App).player1;
+        string selectedplayer2 = (App.Current as App).player2;
+
+        public List<Button> turnoff = new List<Button>();
+        bool isoff;
         public tic_tac_toe()
         {
+            
             InitializeComponent();
-            backgroundVid.Play();
-            string selectedplayer1 = (App.Current as App).player1;
-            playerturn.Content = selectedplayer1;
+
+            turnoff.Add(TLbtn);
+            turnoff.Add(TCbtn);
+            turnoff.Add(TRbtn);
+            turnoff.Add(MLbtn);
+            turnoff.Add(MCbtn);
+            turnoff.Add(MRbtn);
+            turnoff.Add(BLbtn);
+            turnoff.Add(BCbtn);
+            turnoff.Add(BRbtn);
+
+            isoff = false;
+            
         }
         private bool turn = true;
-        
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        public void off()
         {
-            var player1 = turn;
-            var player2 = !turn;
+            foreach (var btn in turnoff)
+            {
+                btn.Visibility = Visibility.Collapsed;
+
+                //myConstructor.WJToTTT();
+            }
+        }
+        
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            
             Button b = (Button)sender;
 
-            if(turn)
+            if(playerturn.Content == selectedplayer1)
             {
+                turn = turn;
+            }
+
+
+            if (playerturn.Content == selectedplayer2)
+            {
+                turn = !turn;
+            }
+
+            if (turn)
+            {
+               
                 b.Content = "X";
+
                
 
             }
             else
             {
+                
                 b.Content = "O";
                 
             }
-            turn = !turn;
-            b.IsEnabled = false;
+
+            //turn = !turn;
+            
+            foreach(var item in turnoff)
+            {
+                item.IsEnabled = false;
+                
+                isoff = true;
+            
+            }
+
+            foreach (var item in turnoff)
+            {
+                await Task.Delay(1000);
+                item.Visibility = Visibility.Hidden;
+            }
+
+            KeepAlive = true;
+
+
+            
             CheckWinner();
+
+            
+          
         }
 
         private void CheckWinner()
@@ -93,18 +155,43 @@ namespace gameweek
             {
                 if(turn)
                 {
-                    MessageBox.Show("O Wins");
+                    MessageBox.Show("X Wins");
 
                 } else
                 {
-                    MessageBox.Show("X wins");
+                    MessageBox.Show("O wins");
                 }
             }
         }
 
-        private void BackgroundVid_MediaEnded(object sender, RoutedEventArgs e)
+       /*private void BackgroundVid_MediaEnded(object sender, RoutedEventArgs e)
         {
-            backgroundVid.Position = new TimeSpan(0);
+           // backgroundVid.Position = new TimeSpan(0);
+        }*/ 
+
+            /*
+        private void Backbtn_Click(object sender, RoutedEventArgs e)
+        {
+            if(isoff == true)
+            {
+                foreach(var btn in turnoff)
+                {
+                    btn.Visibility = Visibility.Hidden;
+
+                //myConstructor.WJToTTT();
+                }
+                TTTToWJ();
+            }
+            
+        }
+        */
+        public void TTTToWJ()
+        {
+            //NavigationService.GoBack();
+
+            //myConstructor.WJToTTTOn();
+            //System.Threading.Thread.Sleep(1000);
+            //navwindow.Navigate(new Wordjumble());
         }
     }
 }

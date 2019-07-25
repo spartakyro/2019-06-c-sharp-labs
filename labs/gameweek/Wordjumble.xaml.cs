@@ -20,26 +20,68 @@ namespace gameweek
     /// </summary>
     public partial class Wordjumble : Page
     {
+        tic_tac_toe myConstructor = new tic_tac_toe();
         public List<string> questions = new List<string>();
         public List<QuestionsBank> AnswersForQuestions = new List<QuestionsBank>();
+        static List<LB> Highscore = new List<LB>();
+            
+        //tic_tac_toe tic_Tac = new tic_tac_toe();
 
         public string Answers;
 
-        public bool jumbleHide = false;
+        public bool jumbleHide;
+        public bool rejumble;
+
+        public string selectedplayer1 = (App.Current as App).player1;
+        public string selectedplayer2 = (App.Current as App).player2;
+
+        public bool whosturn = true;
+
+        public bool istictac;
+        private static int counter;
+        private int Score;
+        private float P1S = 1;
+        private int P1Score;
+        private int P2Score;
 
         public Wordjumble()
         {
+           
             InitializeComponent();
             backgroundVid.Play();
+            
+            
+            tester();
+            //string selectedplayer1 = (App.Current as App).player1;
+            
+            playerturn.Content = selectedplayer1;
 
+
+            istictac = false;
+
+            /*using (var db = new WordJumbleScoreBoardEntities2())
+            {
+                Highscore = db.LBs.ToList();
+
+
+            }*/
+
+
+
+
+        }
+
+        void tester ()
+        {
+
+            
             var WordMix = started(""); //bringing back origin*/
 
             Wordjumbler.Content = WordMix;
 
-            string selectedplayer1 = (App.Current as App).player1;
-            playerturn.Content = selectedplayer1;
-
            
+
+
 
 
         }
@@ -49,7 +91,7 @@ namespace gameweek
 
             string originalW = " ";
             Random random = new Random();
-            int randomNumber = random.Next(0, 6);
+            int randomNumber = random.Next(0, 16);
 
             questions.Add("Asylum");
             questions.Add("Sparta");
@@ -57,8 +99,19 @@ namespace gameweek
             questions.Add("Peanut");
             questions.Add("Observation");
             questions.Add("Thesis");
+            questions.Add("Hospital");
+            questions.Add("Painter");
+            questions.Add("Waterfall");
+            questions.Add("Tired");
+            questions.Add("Climate");
+            questions.Add("Captivate");
+            questions.Add("Imperial");
+            questions.Add("Attachment");
+            questions.Add("Reform");
+            questions.Add("Mercy");
+    
 
-            var quiz = new QuestionsBank("Ayslum", "Asylum", 100);
+            /*var quiz = new QuestionsBank("Ayslum", "Asylum", 100);
             var quiz01 = new QuestionsBank("Sparta", "Sparta", 100);
             var quiz02 = new QuestionsBank("Audience", "Audience", 100);
             var quiz03 = new QuestionsBank("Peanut", "Peanut", 100);
@@ -70,16 +123,20 @@ namespace gameweek
             AnswersForQuestions.Add(quiz02);
             AnswersForQuestions.Add(quiz03);
             AnswersForQuestions.Add(quiz04);
-            AnswersForQuestions.Add(quiz05);
+            AnswersForQuestions.Add(quiz05);*/
+
 
             Random randomize = new Random();
             //var rand = randomize.Next(0,5);
             int Index = randomize.Next(questions.Count);
+            
             var showq = questions[Index];
             Answers = showq;
-
+            
             string mixedOriginal = Shuffle.StringMixer(showq);
 
+           
+                
 
 
             return mixedOriginal;
@@ -103,54 +160,125 @@ namespace gameweek
             
         }
 
-        private async void Checkbtn_Click(object sender, RoutedEventArgs e)
+        public async void Checkbtn_Click(object sender, RoutedEventArgs e)
         {
-            if(Answertxt.Text == Answers)
+
+            if (whosturn == true)
+            {
+                playerturn.Content = selectedplayer1;
+                ScoreCount.Content = P1Score;
+
+            }
+            else
+            {
+                playerturn.Content = selectedplayer2;
+                ScoreCount.Content = P2Score;
+            }
+
+
+            if (Answertxt.Text == Answers)
             {
                 Correctping.Play();
                 Answertxt.Background = Brushes.ForestGreen;
+                //istictac = true;
+                Answertxt.Text = "";
+                Answertxt.Background = Brushes.Aqua;
                 
-                jumbleHide = true;
+                
+                tester();
 
-                navwindow.Navigate(new tic_tac_toe());
 
-            }
 
-            if(Answertxt.Text != Answers)
+                if (whosturn == true)
+                {
+                    
+                    P1Score += 100;
+                    ScoreCount.Content = P1Score;
+                }
+                else
+                {
+                    
+                    P2Score += 100;
+                    ScoreCount.Content = P2Score;
+                }
+
+
+
+                //navwindow.Navigate(new tic_tac_toe().KeepAlive);
+
+
+            } else           
+            //if(Answertxt.Text != Answers)
             {
                 incorrectping.Play();
-
+                
                 Answertxt.Background = Brushes.Red;
                 await Task.Delay(500);
                 Answertxt.Background = Brushes.Aqua;
 
+                P1S+= 1f;
+
+                finalp2Score_Copy.Content = P1S;
+                if(P1S%2==0)
+                {
+                    if(whosturn == true)
+                    {
+                        whosturn = false;
+                        tester();
+                        Answertxt.Text = "";
+
+                    }
+                    else
+                    {
+                        whosturn = true;
+                        tester();
+                        Answertxt.Text = "";
+                    }
+                }
+
+                if(P1S == 6)
+                {
+                    finalp1Score.Content = ($"{selectedplayer1}: {P1Score}");
+                }
+
+                if(P1S == 8)
+                {
+                    finalp2Score.Content = ($"{selectedplayer2}: {P2Score}");
+
+                    if(P1Score > P2Score)
+                    {
+                        MessageBox.Show($"{selectedplayer1} Wins");
+                    }
+                    else
+                    {
+                        MessageBox.Show($"{selectedplayer2} Wins");
+                    }
+                }
+               
 
 
+                /*counter++;
+                
+                if(counter == 2 && whosturn == true)
+                {
+                    whosturn = false;
+
+                    finalCount.Content = ($"{selectedplayer1}: {Score}");
+                }
+                else if(counter == 2 && whosturn == false)
+                {
+
+                    whosturn = true;
+                   // counter = 0;
+                    
+                }*/
+
+                
+
+                
             }
 
            // NavigationService.Navigate(new Uri("tic-tac-toe.xaml", UriKind.Relative));
-
-
-            if (jumbleHide == true)
-            {
-                Answertxt.Visibility = Visibility.Hidden;
-                playerturn.Visibility = Visibility.Hidden;
-                Wordjumbler.Visibility = Visibility.Hidden;
-                checkbtn.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                Answertxt.Visibility = Visibility.Visible;
-                playerturn.Visibility = Visibility.Visible;
-                Wordjumbler.Visibility = Visibility.Visible;
-                checkbtn.Visibility = Visibility.Visible;
-            }
-
-
-
-
-
-
 
         }
 
@@ -160,14 +288,90 @@ namespace gameweek
             incorrectping.Stop();
         }
 
-        private void Correctping_MediaEnded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void BackgroundVid_MediaEnded(object sender, RoutedEventArgs e)
         {
             backgroundVid.Position = new TimeSpan(0);
+        }
+    
+         void Bringback_Click(object sender, RoutedEventArgs e)
+        {
+           // labeltest.Content = istictac.ToString();
+
+             if(istictac == true)
+            {
+                Answertxt.Visibility = Visibility.Hidden;
+                playerturn.Visibility = Visibility.Hidden;
+                Wordjumbler.Visibility = Visibility.Hidden;
+                checkbtn.Visibility = Visibility.Hidden;
+
+                
+
+                foreach(var item in myConstructor.turnoff)
+                {
+
+                    item.Visibility = Visibility.Hidden;
+                    
+                }
+               // istictac = false;
+            }
+            
+             if(istictac == false)
+            {
+                playerturn.Content = selectedplayer2;
+
+                Answertxt.Visibility = Visibility.Visible;
+                playerturn.Visibility = Visibility.Visible;
+                Wordjumbler.Visibility = Visibility.Visible;
+                checkbtn.Visibility = Visibility.Visible;
+                Answertxt.Background = Brushes.Aqua;
+                Answertxt.Text = "";
+            }
+
+            rejumble = true;
+
+            if (rejumble == true)
+            {
+
+
+                ///tester();
+
+
+            }
+
+
+            
+        }
+
+        private void Correctping_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            Correctping.Position = new TimeSpan(0);
+            Correctping.Stop();
+        }
+
+        public void WJToTTTOn()
+        {
+            Answertxt.Visibility = Visibility.Visible;
+            playerturn.Visibility = Visibility.Visible;
+            Wordjumbler.Visibility = Visibility.Visible;
+            checkbtn.Visibility = Visibility.Visible;
+            Answertxt.Background = Brushes.Aqua;
+            Answertxt.Text = "";
+
+
+        }
+
+        public void WJToTTT()
+        {
+            Answertxt.Visibility = Visibility.Hidden;
+            playerturn.Visibility = Visibility.Hidden;
+            Wordjumbler.Visibility = Visibility.Hidden;
+            checkbtn.Visibility = Visibility.Hidden;
+            navwindow.Navigate(new tic_tac_toe());
+        }
+
+        private void Navwindow_Navigated(object sender, NavigationEventArgs e)
+        {
+            
         }
     }
     class Shuffle
@@ -253,6 +457,8 @@ namespace gameweek
 
 
         }
+
+        
 
     }
 

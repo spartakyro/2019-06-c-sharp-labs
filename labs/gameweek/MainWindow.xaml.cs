@@ -20,24 +20,47 @@ namespace gameweek
     /// </summary>
     public partial class MainWindow : Window
     {
+        string playerOne = "";
+        string playerTwo = "";
+        WordJumbleScoreBoardEntities3 db;
 
-        
         public MainWindow()
         {
             InitializeComponent();
             backgroundVid.Play();
             Nameboxp2.Visibility = Visibility.Hidden;
 
+           
+
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            playerOne = Player1name.Content.ToString();
+            playerTwo = Player2name.Content.ToString();
+
 
             if (Startbtn.Content == "Start")
             {
                 Wordjumble game1 = new Wordjumble();
                 this.Content = game1;
-                
+
+
+                using (var db = new WordJumbleScoreBoardEntities3())
+                {
+                    LB newPlayer = new LB();
+                    LB newPlayer2 = new LB();
+                    newPlayer.Name = playerOne;
+                    newPlayer.Score = 0;
+                    newPlayer2.Name = playerTwo;
+                    newPlayer2.Score = 0;
+                    db.LBs.Add(newPlayer);
+                    db.LBs.Add(newPlayer2);
+                    db.SaveChanges();
+                }
+
+
+                HighScore.ItemsSource = db.LBs.ToList();
             }
 
             if (string.IsNullOrWhiteSpace(Namebox.Text))
@@ -102,6 +125,7 @@ namespace gameweek
                 
             }
 
+           
 
 
 
@@ -110,6 +134,14 @@ namespace gameweek
 
 
 
+
+        }
+
+        private void HighScore_Loaded(object sender, RoutedEventArgs e)
+        {
+            db = new WordJumbleScoreBoardEntities3();
+
+            HighScore.ItemsSource = db.LBs.ToList();
         }
     }
 }
