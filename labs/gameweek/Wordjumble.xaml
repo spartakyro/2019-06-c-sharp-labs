@@ -41,7 +41,6 @@
         <Label x:Name="ScoreCount" Content="" FontWeight="DemiBold" FontSize="30" Foreground="Aqua" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="117" Margin="327,59,0,0" VerticalAlignment="Top" Width="136"/>
         <Label x:Name="finalp1Score" Content="" FontWeight="DemiBold" FontSize="30" Foreground="Aqua" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="89" Margin="10,141,0,0" VerticalAlignment="Top" Width="255"/>
         <Label x:Name="finalp2Score" Content="" FontWeight="DemiBold" FontSize="30" Foreground="Aqua" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="89" Margin="10,235,0,0" VerticalAlignment="Top" Width="255"/>
-        <Label x:Name="finalp2Score_Copy" Content="" FontSize="30" Foreground="Aqua" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="89" Margin="10,347,0,0" VerticalAlignment="Top" Width="255"/>
     </Grid>
 
 </Page>

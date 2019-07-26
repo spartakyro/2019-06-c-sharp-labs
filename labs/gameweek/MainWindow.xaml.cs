@@ -144,8 +144,10 @@ namespace gameweek
         {
             using (var db = new WordJumbleScoreBoardEntities3())
             {
-                highscores = db.LBs.ToList();
+                //highscores = db.LBs.ToList();
+                highscores = db.LBs.OrderByDescending(o => o.Score).Take(8).ToList();
             }
+
             HighScore.ItemsSource = highscores;
         }
     }

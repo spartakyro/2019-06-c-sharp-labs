@@ -86,7 +86,7 @@ namespace gameweek
 
             string originalW = " ";
             Random random = new Random();
-            int randomNumber = random.Next(0, 16);
+            int randomNumber = random.Next(0,questions.Count);
 
             questions.Add("Asylum");
             questions.Add("Sparta");
@@ -94,17 +94,80 @@ namespace gameweek
             questions.Add("Peanut");
             questions.Add("Observation");
             questions.Add("Thesis");
+            questions.Add("Berry");
             questions.Add("Hospital");
+            questions.Add("Free");
             questions.Add("Painter");
-            questions.Add("Waterfall");
+            questions.Add("Delivery");
+            questions.Add("Tray");
+            questions.Add("Reject");
             questions.Add("Tired");
-            questions.Add("Climate");
+            questions.Add("Drop");
+            questions.Add("Youth");
+            questions.Add("Council");
             questions.Add("Captivate");
-            questions.Add("Imperial");
+            questions.Add("Home");
+            questions.Add("Seal");
             questions.Add("Attachment");
             questions.Add("Reform");
             questions.Add("Mercy");
-    
+            questions.Add("Candle");
+            questions.Add("Forge");
+            questions.Add("Disaster");
+            questions.Add("Stride");
+            questions.Add("Compliance");
+            questions.Add("Radiation");
+            questions.Add("Loot");
+            questions.Add("Apple");
+            questions.Add("Hardware");
+            questions.Add("Rice");
+            questions.Add("Assumption");
+            questions.Add("Facility");
+            questions.Add("Meadow");
+            questions.Add("Volume");
+            questions.Add("Salvation");
+            questions.Add("Motif");
+            questions.Add("Resident");
+            questions.Add("Elevator");
+            questions.Add("Replacement");
+            questions.Add("Provoke");
+            questions.Add("Wordjumble");
+            questions.Add("Snarl");
+            questions.Add("Aquarium");
+            questions.Add("Terminus");
+            questions.Add("Economic");
+            questions.Add("Ergonomic");
+            questions.Add("Threaten");
+            questions.Add("Bubble");
+            questions.Add("Analysis");
+            questions.Add("Racecar");
+            questions.Add("Commerce");
+            questions.Add("Kayak");
+            questions.Add("Rotator");
+            questions.Add("Status");
+            questions.Add("Stats");
+            questions.Add("Embarressment");
+            questions.Add("Efflux");
+            questions.Add("Attraction");
+            questions.Add("Parallel");
+            questions.Add("Earthflax");
+            questions.Add("Reckless");
+            questions.Add("Characteristics");
+            questions.Add("Cummington");
+            questions.Add("Crepe");
+            questions.Add("Parley");
+            questions.Add(" ");
+
+
+
+
+
+
+
+
+
+
+
 
             /*var quiz = new QuestionsBank("Ayslum", "Asylum", 100);
             var quiz01 = new QuestionsBank("Sparta", "Sparta", 100);
@@ -213,7 +276,7 @@ namespace gameweek
 
                 P1S+= 1f;
 
-                finalp2Score_Copy.Content = P1S;
+                
                 if(P1S%2==0)
                 {
                     if(whosturn == true)
@@ -231,12 +294,12 @@ namespace gameweek
                     }
                 }
 
-                if(P1S == 6)
+                if(P1S == 7)
                 {
                     finalp1Score.Content = ($"{selectedplayer1}: {P1Score}");
                 }
 
-                if(P1S == 8)
+                if(P1S == 9)
                 {
                     finalp2Score.Content = ($"{selectedplayer2}: {P2Score}");
 

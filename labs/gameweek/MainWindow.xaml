@@ -26,7 +26,7 @@
         <Label x:Name="Player1name" Content="" FontSize="30" FontWeight="Bold" Foreground="Aqua" Margin="32,54,76.8,38" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="156"/>
         <Label x:Name="Player2name" Content="" FontSize="30" FontWeight="Bold" Grid.Column="2" Foreground="Aqua" Margin="44.4,54,64.4,31"/>
         <DockPanel Grid.Column="1" Grid.Row="1" Background="Green">
-            <DataGrid x:Name="HighScore" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" Loaded="HighScore_Loaded" >
+            <DataGrid x:Name="HighScore" x:FieldModifier="public" AutoGenerateColumns="False" ColumnWidth="*" Loaded="HighScore_Loaded" Margin="0,-25,0,0" >
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                     <DataGridTextColumn Header="Score" Binding="{Binding Score}"/>
