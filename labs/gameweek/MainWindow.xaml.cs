@@ -22,7 +22,10 @@ namespace gameweek
     {
         string playerOne = "";
         string playerTwo = "";
+        int Player1Score = 0; 
         WordJumbleScoreBoardEntities3 db;
+        Wordjumble jumble;
+        List<LB> highscores;
 
         public MainWindow()
         {
@@ -38,7 +41,7 @@ namespace gameweek
         {
             playerOne = Player1name.Content.ToString();
             playerTwo = Player2name.Content.ToString();
-
+            
 
             if (Startbtn.Content == "Start")
             {
@@ -60,7 +63,7 @@ namespace gameweek
                 }
 
 
-                HighScore.ItemsSource = db.LBs.ToList();
+                //HighScore.ItemsSource = db.LBs.ToList();
             }
 
             if (string.IsNullOrWhiteSpace(Namebox.Text))
@@ -139,9 +142,11 @@ namespace gameweek
 
         private void HighScore_Loaded(object sender, RoutedEventArgs e)
         {
-            db = new WordJumbleScoreBoardEntities3();
-
-            HighScore.ItemsSource = db.LBs.ToList();
+            using (var db = new WordJumbleScoreBoardEntities3())
+            {
+                highscores = db.LBs.ToList();
+            }
+            HighScore.ItemsSource = highscores;
         }
     }
 }

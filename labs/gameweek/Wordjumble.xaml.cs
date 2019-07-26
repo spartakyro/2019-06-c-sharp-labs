@@ -20,7 +20,7 @@ namespace gameweek
     /// </summary>
     public partial class Wordjumble : Page
     {
-        tic_tac_toe myConstructor = new tic_tac_toe();
+       
         public List<string> questions = new List<string>();
         public List<QuestionsBank> AnswersForQuestions = new List<QuestionsBank>();
         static List<LB> Highscore = new List<LB>();
@@ -41,8 +41,8 @@ namespace gameweek
         private static int counter;
         private int Score;
         private float P1S = 1;
-        private int P1Score;
-        private int P2Score;
+        public int P1Score;
+        public int P2Score;
 
         public Wordjumble()
         {
@@ -59,12 +59,7 @@ namespace gameweek
 
             istictac = false;
 
-            /*using (var db = new WordJumbleScoreBoardEntities2())
-            {
-                Highscore = db.LBs.ToList();
-
-
-            }*/
+           
 
 
 
@@ -248,11 +243,24 @@ namespace gameweek
                     if(P1Score > P2Score)
                     {
                         MessageBox.Show($"{selectedplayer1} Wins");
+
                     }
                     else
                     {
                         MessageBox.Show($"{selectedplayer2} Wins");
                     }
+
+                    Answertxt.IsEnabled = false;
+                    using (var db = new WordJumbleScoreBoardEntities3())
+                    {
+                        var updatePlayer = db.LBs.OrderByDescending(p => p.Id).Skip(1).First();
+                        updatePlayer.Score = P1Score;
+                        var updatePlayer2 = db.LBs.OrderByDescending(p => p.Id).First();
+                        updatePlayer2.Score = P2Score;
+                        db.SaveChanges();
+                    }
+
+                    //this.Content = new Wordjumble();
                 }
                
 
@@ -278,7 +286,7 @@ namespace gameweek
                 
             }
 
-           // NavigationService.Navigate(new Uri("tic-tac-toe.xaml", UriKind.Relative));
+           
 
         }
 
@@ -293,54 +301,7 @@ namespace gameweek
             backgroundVid.Position = new TimeSpan(0);
         }
     
-         void Bringback_Click(object sender, RoutedEventArgs e)
-        {
-           // labeltest.Content = istictac.ToString();
-
-             if(istictac == true)
-            {
-                Answertxt.Visibility = Visibility.Hidden;
-                playerturn.Visibility = Visibility.Hidden;
-                Wordjumbler.Visibility = Visibility.Hidden;
-                checkbtn.Visibility = Visibility.Hidden;
-
-                
-
-                foreach(var item in myConstructor.turnoff)
-                {
-
-                    item.Visibility = Visibility.Hidden;
-                    
-                }
-               // istictac = false;
-            }
-            
-             if(istictac == false)
-            {
-                playerturn.Content = selectedplayer2;
-
-                Answertxt.Visibility = Visibility.Visible;
-                playerturn.Visibility = Visibility.Visible;
-                Wordjumbler.Visibility = Visibility.Visible;
-                checkbtn.Visibility = Visibility.Visible;
-                Answertxt.Background = Brushes.Aqua;
-                Answertxt.Text = "";
-            }
-
-            rejumble = true;
-
-            if (rejumble == true)
-            {
-
-
-                ///tester();
-
-
-            }
-
-
-            
-        }
+        
 
         private void Correctping_MediaEnded(object sender, RoutedEventArgs e)
         {
@@ -348,31 +309,11 @@ namespace gameweek
             Correctping.Stop();
         }
 
-        public void WJToTTTOn()
-        {
-            Answertxt.Visibility = Visibility.Visible;
-            playerturn.Visibility = Visibility.Visible;
-            Wordjumbler.Visibility = Visibility.Visible;
-            checkbtn.Visibility = Visibility.Visible;
-            Answertxt.Background = Brushes.Aqua;
-            Answertxt.Text = "";
+       
 
+       
 
-        }
-
-        public void WJToTTT()
-        {
-            Answertxt.Visibility = Visibility.Hidden;
-            playerturn.Visibility = Visibility.Hidden;
-            Wordjumbler.Visibility = Visibility.Hidden;
-            checkbtn.Visibility = Visibility.Hidden;
-            navwindow.Navigate(new tic_tac_toe());
-        }
-
-        private void Navwindow_Navigated(object sender, NavigationEventArgs e)
-        {
-            
-        }
+        
     }
     class Shuffle
     {

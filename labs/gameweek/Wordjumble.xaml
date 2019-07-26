@@ -12,9 +12,9 @@
         <MediaElement x:Name="backgroundVid" Source="jumble.mp4" LoadedBehavior="Manual" Stretch="Fill" Grid.RowSpan="2" Grid.ColumnSpan="3" Cursor="" IsEnabled="False" MediaEnded="BackgroundVid_MediaEnded"/>
         <TextBox x:Name="Answertxt" Height="30" FontWeight="Bold"  Width="200" Margin="0,347,0,72.6" Background="Aqua" TextChanged="Answertxt_TextChanged" Grid.Column="2" />
         <Label x:Name="playerturn" Content="kieron" FontSize="30" FontWeight="DemiBold" HorizontalContentAlignment="Center" Foreground="Aqua" HorizontalAlignment="Left" Height="49" Margin="300,10,0,0" VerticalAlignment="Top" Width="193" DataContextChanged="Label_DataContextChanged"/>
-        <Frame x:Name="navwindow" NavigationUIVisibility="Hidden" Margin="44,0,10,10" Navigated="Navwindow_Navigated"/>
+        <Frame x:Name="navwindow" NavigationUIVisibility="Hidden" Margin="44,0,10,10"/>
         <Label x:Name="Wordjumbler" Content="hello" FontSize="30" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Background="Aqua" Foreground="Black" FontWeight="DemiBold" Margin="270,141,275,220"/>
-        <Button x:Name="checkbtn"  Height="50" Width="100" Margin="641,390,59,10"  Content="Check" FontSize="30" FontWeight="DemiBold" Click="Checkbtn_Click" >
+        <Button x:Name="checkbtn"  Height="50" Width="100" Margin="641,327,59,73"  Content="Check" FontSize="30" FontWeight="DemiBold" Click="Checkbtn_Click" >
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="Aqua"/>
@@ -35,7 +35,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="bringback" Content="Go" FontSize="30" FontWeight="DemiBold" Width="100" Margin="690,4,10,391" Click="Bringback_Click" Background="Aqua" Foreground="Black" />
+        <Button x:Name="bringback" Content="Go" FontSize="30" FontWeight="DemiBold" Width="100" Margin="690,4,10,391" Background="Aqua" Foreground="Black" />
         <MediaElement x:Name="Correctping" Source="Correct.mp3" MediaEnded="Correctping_MediaEnded" LoadedBehavior="Manual" Visibility="Hidden" Height="50" Width="50" Margin="835,350,-85,50"/>
         <MediaElement x:Name="incorrectping" Source="incorrect.mp4" MediaEnded="Incorrectping_MediaEnded" Visibility="Hidden" LoadedBehavior="Manual" Height="50" Width="50" Margin="835,400,-85,0"/>
         <Label x:Name="ScoreCount" Content="" FontWeight="DemiBold" FontSize="30" Foreground="Aqua" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="117" Margin="327,59,0,0" VerticalAlignment="Top" Width="136"/>
