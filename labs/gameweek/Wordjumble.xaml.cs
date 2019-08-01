@@ -213,11 +213,8 @@ namespace gameweek
             
         }
 
-        void Nextwindow()
-        {
-            
-        }
-
+       
+       
         public async void Checkbtn_Click(object sender, RoutedEventArgs e)
         {
 

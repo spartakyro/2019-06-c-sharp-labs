@@ -13,6 +13,9 @@ namespace lab_51_Entity_crud_app
         static Customer customer = new Customer();
         static void Main(string[] args)
         {
+
+            
+
             AddCustomer();
             UpdateCustomer();
             DeleteCustomer();
@@ -190,7 +193,7 @@ namespace lab_51_Entity_crud_app
                 deleteCustomer = db.Customers.Find("NEWMA");
                 // db.Customers.Remove(deleteCustomer);
                 int affected = db.SaveChanges();
-                Console.WriteLine($"{affected} records deleted");
+                Console.WriteLine($"\n\n{affected} records deleted\n\n");
 
 
                 foreach (var c in db.Customers)
