@@ -1,0 +1,45 @@
+﻿@page
+@model lab_74_b.Pages.NorthwindModel
+@{
+    ViewData["Title"] = "Northwind";
+}
+
+<h2>Northwind</h2>
+
+<p>hover over me</p>
+
+<h2>List of northwind customers</h2>
+
+@foreach (var customer in Model.customers)
+{
+   /*<div class="row">
+    <div class="col-sm-3">@customer.CustomerID</div>
+    <div class="col-sm-3">@customer.ContactName</div>
+    <div class="col-sm-3">@customer.CompanyName</div>
+    <div class="col-sm-3">@customer.City</div>
+   </div>*/
+}
+<table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Company</th>
+            <th>City</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var customer in Model.customers)
+        {
+            <tr>
+                <td>@customer.CustomerID</td>
+                <td>@customer.ContactName</td>
+                <td>@customer.CompanyName</td>
+                <td>@customer.City</td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>

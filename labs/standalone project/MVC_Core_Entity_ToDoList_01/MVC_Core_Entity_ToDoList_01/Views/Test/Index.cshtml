@@ -1,0 +1,24 @@
+﻿@model MVC_Core_Entity_ToDoList_01.Models.Lists
+@{
+    ViewData["Title"] = "KyrosTest";
+}
+
+<h2>Test Index Page</h2>
+
+<ul>
+    @foreach (var item in Model.stringList)
+    {
+        <li>Item is <span id="span01">@item</span></li>
+        <p>@Model.ageing</p>
+    }
+
+
+</ul>
+<p>@Model.publicCeleb</p>
+<p>@Model.ageing</p>
+<style>
+    #li.span01{
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow';
+        background: red;
+    }
+</style>

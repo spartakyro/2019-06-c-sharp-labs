@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using System.Linq;
 using System.Xml.Linq;
+using System.IO;
+using System.Xml.Serialization;
+using System.Diagnostics;
 
 namespace lab_69_XML_from_northwind
 {
@@ -12,7 +15,8 @@ namespace lab_69_XML_from_northwind
         static void Main(string[] args)
         {
             //customer list
-            List<Product> products = new List<Product>();
+            List<Product> products = new List<Product>();   //from northwind
+            Products productsFromXML = new Products(); // from XML, deserialize
             using (var db = new Northwind()) 
             {
                 //select * products and fill list;
@@ -42,7 +46,7 @@ namespace lab_69_XML_from_northwind
 
             var XMLproducts = new XElement("Products",
                from p in products.Take(5)
-               select new XElement("Products",
+               select new XElement("Product",
                new XElement("ProductID", p.ProductID),
                 new XElement("ProductName", p.ProductName),
                 new XElement("CategoryID", p.CategoryID),
@@ -51,7 +55,7 @@ namespace lab_69_XML_from_northwind
 
             var XMLproducts1 = new XElement("Products",
             from p in products.Take(5)
-            select new XElement("Products",
+            select new XElement("Product",
              new XAttribute("ProductID", p.ProductID),
              new XAttribute("ProductName", p.ProductName),
              new XAttribute("CategoryID", p.CategoryID),
@@ -60,14 +64,36 @@ namespace lab_69_XML_from_northwind
 
 
             XMLproducts.Save("products.xml");
+           
             Console.WriteLine(XMLproducts);
-            Console.WriteLine(XMLproducts1);
+            //Console.WriteLine(XMLproducts1);
 
 
             //send out products XML list across the world to our suppliers
             //at the other side of the world, now deserialise 
 
+            //streamread into memory first, then deserialize
+
+            using (var reader = new StreamReader ("products.xml"))
+            {
+                //now deserialise the stream
+                var serializer = new XmlSerializer(typeof(Products));
+
+                productsFromXML = (Products)serializer.Deserialize(reader);
+
+                
+            }
+            Console.WriteLine("=======================Deserialize==================================================");
+            Console.WriteLine(productsFromXML.ProductList.Count());
+            productsFromXML.ProductList.ForEach(p => Console.WriteLine($"{p.ProductID}{p.ProductName}{p.UnitPrice}"));
         }
+    }
+
+    [XmlRoot("Products")]
+    public class Products
+    {
+        [XmlElement("Product")]
+        public List <Product> ProductList { get; set; }
     }
 
     public class Category
@@ -90,7 +116,7 @@ namespace lab_69_XML_from_northwind
         public int ProductID { get; set; }
         public string ProductName { get; set; }
         public int? CategoryID { get; set; }
-        public virtual Category Category { get; set; }
+       // public virtual Category Category { get; set; }
         public string QuantityPerUnit { get; set; }
         public decimal? UnitPrice { get; set; } = 0;
         public short? UnitsInStock { get; set; } = 0;
@@ -124,19 +150,19 @@ namespace lab_69_XML_from_northwind
                 .IsRequired()
                 .HasMaxLength(15);
 
-            // define a one-to-many relationship
-            modelBuilder.Entity<Category>()
-                .HasMany(c => c.Products)
-                .WithOne(p => p.Category);
+            //// define a one-to-many relationship
+            //modelBuilder.Entity<Category>()
+            //    .HasMany(c => c.Products)
+            //    .WithOne(p => p.Category);
 
             modelBuilder.Entity<Product>()
                 .Property(c => c.ProductName)
                 .IsRequired()
                 .HasMaxLength(40);
 
-            modelBuilder.Entity<Product>()
-                .HasOne(p => p.Category)
-                .WithMany(c => c.Products);
+            //modelBuilder.Entity<Product>()
+            //    .HasOne(p => p.Category)
+            //    .WithMany(c => c.Products);
 
         }
     }

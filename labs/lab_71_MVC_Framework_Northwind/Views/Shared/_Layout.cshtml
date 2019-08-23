@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Test", "", "Test")</li>
+                    <li>@Html.ActionLink("test2", "About", "Test2")</li>
+                    <li>@Html.ActionLink("Golf", "Golf", "Test2")</li>
+                    <li>@Html.ActionLink("Cricket", "Cricket", "Test2")</li>
+                    <li>@Html.ActionLink("Products", "Index", "Products")</li>
+                    <li>@Html.ActionLink("Create", "Create", "Products")</li>
+                    
+                    <li><a href = "https://www.bbc.co.uk/sports">BBC sports</a></li>
+                </ul>
+            </div>
+            <style>
+                a:hover{
+                    font-size:1.5em;
+                    border: 1px solid gold;
+                    border-radius: 5px;
+                    font-weight: 100;
+                    
+                }
+
+                a:active {
+                    border:2px solid blue;
+                }
+                
+            </style>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+    <div class=" container">
+        <img id="Mountain" src="https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/A-Alamy-BXWK5E_vvmkuf.jpg" width="150px" />
+    </div>
+    <style>
+            #Mountain{
+                width:50%;
+                width:75vw; /*viewport (visible screen size : width) vw vh vwmin/max*/
+            }
+    </style>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
